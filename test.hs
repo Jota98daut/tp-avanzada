@@ -8,11 +8,14 @@ as1 = M.fromList [ ('q', True)
                  , ('p', False)]
 
 
+-- Definición recursiva de asigns
+-- Duplica la lista de asignaciones, resultando en dos listas copias
+-- En una de ellas, inserta el par (x,False) a todas las asignaciones de la lista. En la otra, inserta el par (x,True)
+-- De esta manera resulta una lista con todas las posibles asignaciones
 asigns :: [Char] -> [Asign]
 asigns [] = [M.empty]
-asigns (x:xs) = map (f (x,False)) as ++ map (f (x,True)) as
+asigns (x:xs) = map (M.insert x False) as ++ map (M.insert x True) as
     where 
-    f = (\(k,v) as -> M.insert k v as)
     as = asigns xs
 
 -- Funcion que dada una clave, un valor y una lista de duplas, agregue la dupla (clave,valor) a la lista
