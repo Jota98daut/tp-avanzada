@@ -103,7 +103,7 @@ esCon f           = esLit f
 
 -- Determina si una formula esta en forma normal disyuntiva
 esDNF :: Formula -> Bool
-esDNF (OR f1 f2) = esCon f1 && esCon f2
+esDNF (OR f1 f2) = esDNF f1 && esDNF f2
 esDNF f          = esCon f
 
 
